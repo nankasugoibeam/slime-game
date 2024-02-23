@@ -11,18 +11,26 @@ public class GrapplingHook : MonoBehaviour
     private DistanceJoint2D joint;
     [SerializeField] private float pullSpeed;
     [SerializeField] private float CloseDistance;
-    // Start is called before the first frame update
+    [SerializeField] private int maxHealth;
+    private int currentHealth;
+    public float timeInvincible;
+    bool isInvincible;
+    float invincibleTimer;
+    //fore the first frame update
     void Start()
     {
         joint = gameObject.GetComponent<DistanceJoint2D>();
         // joint is the line drawn between the player and the clicked surface
         joint.enabled = false;
         rope.enabled = false;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+
         if(Input.GetMouseButtonDown(0))
         {   
             Vector3 mouse = Input.mousePosition;
@@ -62,5 +70,37 @@ public class GrapplingHook : MonoBehaviour
         if(rope.enabled == true){
             rope.SetPosition(1, transform.position);
         }
+
+        if (isInvincible)
+        {
+            invincibleTimer -= Time.deltaTime;
+            if (invincibleTimer < 0)
+            {
+                isInvincible = false;
+            }
+        }
+
+        if(currentHealth == 0){
+            transform.position = new Vector3(-7, 1, 0);
+            currentHealth = maxHealth;
+        }
+    }
+
+        
+
+    public void changeHealth(int amount)
+    {
+        if (amount < 0)
+        {
+            if (isInvincible)
+            {
+                return;
+            }
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+        }
+
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        Debug.Log(currentHealth + "/" + maxHealth);
     }
 }
