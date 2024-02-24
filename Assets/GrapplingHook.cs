@@ -80,6 +80,7 @@ public class GrapplingHook : MonoBehaviour
                 grapplePoint = attachedPlatform.TransformPoint(offsetFromPlatform);
                 joint.connectedAnchor = grapplePoint;
                 rope.SetPosition(0, grapplePoint);
+                joint.distance = joint.distance - pullSpeed/60;
             }
         }
 
