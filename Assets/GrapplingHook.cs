@@ -83,28 +83,6 @@ public class GrapplingHook : MonoBehaviour
             }
         }
 
-        if (joint.enabled && attachedPlatform != null)
-    {
-        // Calculate the new grapple point based on the moving platform's position
-        grapplePoint = attachedPlatform.TransformPoint(offsetFromPlatform);
-
-        // Manually move the player towards the grapple point
-        Vector2 targetPosition = Vector2.MoveTowards(transform.position, grapplePoint, pullSpeed * Time.deltaTime);
-        transform.position = targetPosition;
-
-        // Update the rope positions
-        rope.SetPosition(0, grapplePoint);
-        rope.SetPosition(1, transform.position);
-
-        // Optionally, disable the joint while manually handling movement
-        joint.enabled = false;
-    }
-    else if (!joint.enabled && !attachedPlatform)
-    {
-        // Re-enable the joint when not attached to a moving platform
-        joint.enabled = true;
-    }
-
         if(Input.GetMouseButtonUp(0))
         {
             joint.enabled = false;
