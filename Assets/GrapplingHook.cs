@@ -12,6 +12,7 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField] private float pullSpeed;
     [SerializeField] private float CloseDistance;
     [SerializeField] private int maxHealth;
+    [SerializeField] private float downSpeed;
     private int currentHealth;
     public float timeInvincible;
     bool isInvincible;
@@ -19,6 +20,8 @@ public class GrapplingHook : MonoBehaviour
     //fore the first frame update
     private Transform attachedPlatform; // Reference to the platform the hook is attached to
     private Vector3 offsetFromPlatform; // Offset of the grapple point from the platform's origin
+
+    private int specialPlatform;
 
     void Start()
     {
@@ -59,8 +62,13 @@ public class GrapplingHook : MonoBehaviour
                 // Check if the hit object is a moving platform
                 if (hit.collider.gameObject.CompareTag("MovingPlatform")) // Make sure your platform has the tag "MovingPlatform"
                 {
+                    specialPlatform = 1;
                     attachedPlatform = hit.collider.transform;
                     offsetFromPlatform = attachedPlatform.InverseTransformPoint(grapplePoint);
+                }
+                else  if (hit.collider.gameObject.CompareTag("RainPlatform")) 
+                {
+                    specialPlatform = 2;
                 }
                 else
                 {
@@ -72,15 +80,22 @@ public class GrapplingHook : MonoBehaviour
 
         if (joint.enabled)
         {
-        joint.distance = Mathf.Max(joint.distance - Time.deltaTime * pullSpeed, CloseDistance);
+            joint.distance = Mathf.Max(joint.distance - Time.deltaTime * pullSpeed, CloseDistance);
         
-        // If attached to a moving platform, update the grapple point
-            if (attachedPlatform != null)
+            if(specialPlatform == 1)
             {
                 grapplePoint = attachedPlatform.TransformPoint(offsetFromPlatform);
                 joint.connectedAnchor = grapplePoint;
                 rope.SetPosition(0, grapplePoint);
-                joint.distance = joint.distance - pullSpeed/60;
+                joint.distance = Mathf.Max(joint.distance - pullSpeed/60, CloseDistance);
+            }
+            if(specialPlatform == 2)
+            {
+                grapplePoint += Vector3.down * Time.deltaTime *  downSpeed;
+                joint.connectedAnchor = grapplePoint;
+                rope.SetPosition(0, grapplePoint);
+                joint.distance = Mathf.Max(joint.distance - pullSpeed/60, CloseDistance);
+
             }
         }
 
@@ -89,6 +104,7 @@ public class GrapplingHook : MonoBehaviour
             joint.enabled = false;
             rope.enabled = false;
             attachedPlatform = null; // Clear the platform reference
+            specialPlatform = 0;
         }
 
         if(rope.enabled == true){
@@ -109,9 +125,21 @@ public class GrapplingHook : MonoBehaviour
             currentHealth = maxHealth;
         }
     }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("DropPlatform"))
+        {
+            DisableGrapplingHook();
+        }
+    }
 
-        
-
+    void DisableGrapplingHook()
+    {
+        joint.enabled = false;
+        rope.enabled = false;
+        attachedPlatform = null;
+        specialPlatform = 0; 
+    }
     public void changeHealth(int amount)
     {
         if (amount < 0)
