@@ -298,6 +298,7 @@ MonoBehaviour:
   pullSpeed: 10
   CloseDistance: 1
   maxHealth: 0
+  timeInvincible: 0
 --- !u!231 &8863849175363859444
 SpringJoint2D:
   m_ObjectHideFlags: 0

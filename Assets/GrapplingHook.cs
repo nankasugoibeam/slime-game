@@ -17,6 +17,9 @@ public class GrapplingHook : MonoBehaviour
     bool isInvincible;
     float invincibleTimer;
     //fore the first frame update
+    private Transform attachedPlatform; // Reference to the platform the hook is attached to
+    private Vector3 offsetFromPlatform; // Offset of the grapple point from the platform's origin
+
     void Start()
     {
         joint = gameObject.GetComponent<DistanceJoint2D>();
@@ -52,6 +55,17 @@ public class GrapplingHook : MonoBehaviour
                 rope.SetPosition(0, grapplePoint);
                 rope.SetPosition(1, transform.position);
                 rope.enabled = true;
+
+                // Check if the hit object is a moving platform
+                if (hit.collider.gameObject.CompareTag("MovingPlatform")) // Make sure your platform has the tag "MovingPlatform"
+                {
+                    attachedPlatform = hit.collider.transform;
+                    offsetFromPlatform = attachedPlatform.InverseTransformPoint(grapplePoint);
+                }
+                else
+                {
+                    attachedPlatform = null;
+                }
             }
 
         }
@@ -59,12 +73,43 @@ public class GrapplingHook : MonoBehaviour
         if (joint.enabled)
         {
         joint.distance = Mathf.Max(joint.distance - Time.deltaTime * pullSpeed, CloseDistance);
+        
+        // If attached to a moving platform, update the grapple point
+            if (attachedPlatform != null)
+            {
+                grapplePoint = attachedPlatform.TransformPoint(offsetFromPlatform);
+                joint.connectedAnchor = grapplePoint;
+                rope.SetPosition(0, grapplePoint);
+            }
         }
+
+        if (joint.enabled && attachedPlatform != null)
+    {
+        // Calculate the new grapple point based on the moving platform's position
+        grapplePoint = attachedPlatform.TransformPoint(offsetFromPlatform);
+
+        // Manually move the player towards the grapple point
+        Vector2 targetPosition = Vector2.MoveTowards(transform.position, grapplePoint, pullSpeed * Time.deltaTime);
+        transform.position = targetPosition;
+
+        // Update the rope positions
+        rope.SetPosition(0, grapplePoint);
+        rope.SetPosition(1, transform.position);
+
+        // Optionally, disable the joint while manually handling movement
+        joint.enabled = false;
+    }
+    else if (!joint.enabled && !attachedPlatform)
+    {
+        // Re-enable the joint when not attached to a moving platform
+        joint.enabled = true;
+    }
 
         if(Input.GetMouseButtonUp(0))
         {
             joint.enabled = false;
             rope.enabled = false;
+            attachedPlatform = null; // Clear the platform reference
         }
 
         if(rope.enabled == true){
