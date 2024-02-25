@@ -14,7 +14,6 @@ public class corsswind : MonoBehaviour
         if (controller != null)
         {
             controller.transform.position += new Vector3(crossSpeed,0,0);
-            body.gravityScale = 0;
         }
     }
 
@@ -24,7 +23,6 @@ public class corsswind : MonoBehaviour
         var body = controller.GetComponent<Rigidbody2D>();
         if (controller != null)
         {
-            body.gravityScale = 3;
         }
        
     }
