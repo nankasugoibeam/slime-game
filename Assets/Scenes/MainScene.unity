@@ -11593,5 +11593,13 @@ PrefabInstance:
       propertyPath: grappleLength
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8863849175363859446, guid: f41dafbb2f9e4bf439012ce99b7330be, type: 3}
+      propertyPath: timeInvincible
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8863849175363859447, guid: f41dafbb2f9e4bf439012ce99b7330be, type: 3}
+      propertyPath: m_Distance
+      value: 7.2499857
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f41dafbb2f9e4bf439012ce99b7330be, type: 3}

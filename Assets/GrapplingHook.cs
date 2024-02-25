@@ -120,7 +120,7 @@ public class GrapplingHook : MonoBehaviour
             }
         }
 
-        if(currentHealth == 0){
+        if(currentHealth <= 0){
             transform.position = new Vector3(-7, 1, 0);
             currentHealth = maxHealth;
         }
