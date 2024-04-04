@@ -48,7 +48,7 @@ public class GrapplingHook : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.1f, 0), direction, grappleLength, grappleLayer);
 
-            if(hit.collider != null)
+            if(hit.collider != null && !hit.collider.gameObject.CompareTag("forbidden"))
             {
                 grapplePoint = hit.point;
                 grapplePoint.z = 0;
