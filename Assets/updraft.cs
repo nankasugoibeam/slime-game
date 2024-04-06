@@ -23,7 +23,7 @@ public class updraft : MonoBehaviour
         var body = controller.GetComponent<Rigidbody2D>();
         if (controller != null)
         {
-            body.gravityScale = 3;
+            body.gravityScale = 6;
         }
        
     }

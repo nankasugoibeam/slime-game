@@ -8,6 +8,7 @@ TagManager:
   - RainPlatform
   - DropPlatform
   - updraft
+  - forbidden
   layers:
   - Default
   - TransparentFX
