@@ -21,6 +21,7 @@ public class GrapplingHook : MonoBehaviour
     private Transform attachedPlatform; // Reference to the platform the hook is attached to
     private Vector3 offsetFromPlatform; // Offset of the grapple point from the platform's origin
 
+    private Animator animator;
     private int specialPlatform;
 
     void Start()
@@ -30,6 +31,7 @@ public class GrapplingHook : MonoBehaviour
         joint.enabled = false;
         rope.enabled = false;
         currentHealth = maxHealth;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -50,6 +52,7 @@ public class GrapplingHook : MonoBehaviour
 
             if(hit.collider != null && !hit.collider.gameObject.CompareTag("forbidden"))
             {
+                GetComponent<Animator>().Play("launch",  -1, 0f);
                 grapplePoint = hit.point;
                 grapplePoint.z = 0;
                 joint.connectedAnchor = grapplePoint;
@@ -80,6 +83,7 @@ public class GrapplingHook : MonoBehaviour
 
         if (joint.enabled)
         {
+
             joint.distance = Mathf.Max(joint.distance - Time.deltaTime * pullSpeed, CloseDistance);
         
             if(specialPlatform == 1)
