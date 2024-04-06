@@ -15,7 +15,7 @@ public class NextLevelChange : MonoBehaviour
     // Update is called once per frame
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Player"){
+        if(other.tag == "Player"){
             Debug.Log("aeaae");
             EndScreen.gameObject.SetActive(true);
 
