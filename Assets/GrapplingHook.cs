@@ -35,10 +35,10 @@ public class GrapplingHook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
 
         if(Input.GetMouseButtonDown(0))
-        {   
+        {
             Vector3 mouse = Input.mousePosition;
             Vector3 point = Camera.main.WorldToScreenPoint(transform.position);
             Vector3 direction = mouse - point;
@@ -66,7 +66,7 @@ public class GrapplingHook : MonoBehaviour
                     attachedPlatform = hit.collider.transform;
                     offsetFromPlatform = attachedPlatform.InverseTransformPoint(grapplePoint);
                 }
-                else  if (hit.collider.gameObject.CompareTag("RainPlatform")) 
+                else  if (hit.collider.gameObject.CompareTag("RainPlatform"))
                 {
                     specialPlatform = 2;
                 }
@@ -81,12 +81,11 @@ public class GrapplingHook : MonoBehaviour
         if (joint.enabled)
         {
             joint.distance = Mathf.Max(joint.distance - Time.deltaTime * pullSpeed, CloseDistance);
-        
+
             if(specialPlatform == 1)
             {
-                grapplePoint = attachedPlatform.TransformPoint(offsetFromPlatform);
-                joint.connectedAnchor = grapplePoint;
-                rope.SetPosition(0, grapplePoint);
+                joint.connectedAnchor = attachedPlatform.TransformPoint(offsetFromPlatform);
+                rope.SetPosition(0, attachedPlatform.TransformPoint(offsetFromPlatform));
                 joint.distance = Mathf.Max(joint.distance - pullSpeed/60, CloseDistance);
             }
             if(specialPlatform == 2)
@@ -138,7 +137,7 @@ public class GrapplingHook : MonoBehaviour
         joint.enabled = false;
         rope.enabled = false;
         attachedPlatform = null;
-        specialPlatform = 0; 
+        specialPlatform = 0;
     }
     public void changeHealth(int amount)
     {
