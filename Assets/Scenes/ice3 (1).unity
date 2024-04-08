@@ -38655,7 +38655,7 @@ PrefabInstance:
     - target: {fileID: 3616199387874590665, guid: 7c48b6e1d3480534d9a29967c49c3579, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1147040009}
     - target: {fileID: 3616199387874590666, guid: 7c48b6e1d3480534d9a29967c49c3579, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -51273,6 +51273,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!4 &1147040009 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6842321816339816957, guid: 805138051b42e60498de0546f4fba434, type: 3}
+  m_PrefabInstance: {fileID: 1147039997}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1196735566
 PrefabInstance:
   m_ObjectHideFlags: 0
