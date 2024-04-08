@@ -75509,6 +75509,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: vecteezy_cute-yellow-star-illustration-for-decoration_16384872
       objectReference: {fileID: 0}
+    - target: {fileID: 3705530097211062729, guid: ef84cdc9dbb5d9f42868e3ae1c00e864, type: 3}
+      propertyPath: collectSound
+      value: 
+      objectReference: {fileID: 8300000, guid: bc7bf05ea96781a478c32b306f802698, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef84cdc9dbb5d9f42868e3ae1c00e864, type: 3}
 --- !u!1001 &1932226759

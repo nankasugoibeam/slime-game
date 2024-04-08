@@ -51389,7 +51389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e03a87ce1e501c4ab307705a73d5ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectSound: {fileID: 0}
+  collectSound: {fileID: 8300000, guid: bc7bf05ea96781a478c32b306f802698, type: 3}
 --- !u!61 &1353225740
 BoxCollider2D:
   m_ObjectHideFlags: 0
