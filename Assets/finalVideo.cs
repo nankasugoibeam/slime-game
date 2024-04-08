@@ -19,9 +19,11 @@ public class finalVideo : MonoBehaviour
 
     void EndReached(VideoPlayer vp)
     {
-        mainCamera.SetActive(false); // Disable the main camera
-        playerCamera.SetActive(true); // Enable the player camera
+        mainCamera.SetActive(false);
+        playerCamera.SetActive(true);
         EndScreen.gameObject.SetActive(true);
+        //PlayerPrefs.SetInt("levelAt", 9);
+        //SceneManager.LoadScene(0);
 
     }
 
@@ -29,9 +31,9 @@ public class finalVideo : MonoBehaviour
     {
         if(other.CompareTag("Player") && !triggered )
         {
-            videoPlayer.Play();
             playerCamera.SetActive(false); // Enable the player camera
             mainCamera.SetActive(true); // Disable the main camera
+            videoPlayer.Play();
             triggered = true;
         }
     }
