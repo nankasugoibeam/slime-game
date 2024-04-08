@@ -6422,6 +6422,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3165063886017666465, guid: db9dae31b2cf516419335467b106e952, type: 3}
+      propertyPath: m_Size.y
+      value: 3.879854
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165063886017666465, guid: db9dae31b2cf516419335467b106e952, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.4399272
+      objectReference: {fileID: 0}
     - target: {fileID: 3165063886017666493, guid: db9dae31b2cf516419335467b106e952, type: 3}
       propertyPath: m_Name
       value: EndBox
