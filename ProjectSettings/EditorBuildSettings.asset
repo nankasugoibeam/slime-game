@@ -20,4 +20,22 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/\u521D\u59CB.unity"
     guid: 20e8276dbe3ab294f8b76b730b4ff8d0
+  - enabled: 1
+    path: Assets/Scenes/level2-1.unity
+    guid: b333556e664dc6147857e1284ec8a98c
+  - enabled: 1
+    path: Assets/Scenes/level 2-2.unity
+    guid: 65b7680fc49386942b21ea8b651b7d3e
+  - enabled: 1
+    path: Assets/Scenes/ice1.unity
+    guid: 5e31d591c05262a4db732cac43148ec9
+  - enabled: 1
+    path: Assets/Scenes/ice2.unity
+    guid: 18b9d80e47c04ad43a376a7667583d11
+  - enabled: 1
+    path: Assets/Scenes/ice3 (1).unity
+    guid: c440db04073cd8d41a606bc06b227a6b
+  - enabled: 1
+    path: Assets/Scenes/FINAL.unity
+    guid: 8e751a7a94e31534dacaec4f40c9e62c
   m_configObjects: {}
